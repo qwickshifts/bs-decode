@@ -2,7 +2,7 @@ open Jest;
 open Expect;
 
 module Sample = Decode_TestSampleData;
-open Decode_AsResult_OfParseError;
+open BsDecode.Decode_AsResult_OfParseError;
 
 let valErr = (err, json) => Error(ParseError.Val(err, json));
 let arrErr = (first, rest) =>

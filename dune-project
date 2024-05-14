@@ -4,6 +4,8 @@
 
 (using melange 0.1)
 
+(generate_opam_files)
+
 (name bs-decode)
 
 (source
@@ -20,14 +22,16 @@
 (bug_reports https://github.com/mlms13/bs-decode/issues)
 
 (package
-(allow_empty)
+ (allow_empty)
  (name bs-decode)
  (synopsis "Type-safe JSON decoding for ReasonML and OCaml")
  (description "Type-safe JSON decoding for ReasonML and OCaml")
  (depends
   dot-merlin-reader
   (melange
-   (>= 2.0.0))
+   (and
+    (>= 3.0.0)
+    (< 4.0.0)))
   (ocaml
    (>= 5.1.0))
   (reason
@@ -38,5 +42,3 @@
   (melange-jest
    (>= 0.1.0))
   opam-check-npm-deps))
-
-(generate_opam_files)

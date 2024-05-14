@@ -6,20 +6,21 @@ open Jest;
 open Expect;
 open Relude.Globals;
 
-module ParseError = Decode_ParseError;
+module ParseError = BsDecode.Decode_ParseError;
 module Sample = Decode_TestSampleData;
 
 type customError = [ ParseError.base | `InvalidColor | `InvalidShape];
 
 [@ocaml.warning "-3"]
 module ResultCustom =
-  Decode.ParseError.ResultOf({
+  BsDecode.Decode.ParseError.ResultOf({
     type t = customError;
     let handle = x => (x :> t);
   });
 
 [@ocaml.warning "-3"]
-module Decode = Decode.Make(ResultCustom.TransformError, ResultCustom);
+module Decode =
+  BsDecode.Decode.Make(ResultCustom.TransformError, ResultCustom);
 
 let toDebugString = (err, json) =>
   switch (err) {
